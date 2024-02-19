@@ -66,34 +66,6 @@ class SRResNet(nn.Module):
         out = self.conv_output(out)
         return out
     
-    
-    # def __init__(self):
-    #     super(SRResNet, self).__init__()
-    #     self.entry_conv = nn.Conv2d(3, 64, kernel_size=9, padding=4, bias=False)
-    #     self.entry_act = nn.PReLU()
-    #     self.res_blocks = nn.Sequential(*[ResidualBlock() for _ in range(16)])
-    #     self.inter_conv = nn.Conv2d(64, 64, kernel_size=3, padding=1, bias=False)
-    #     self.norm = nn.InstanceNorm2d(64, affine=True)
-    #     self.upscale = nn.Sequential(
-    #         nn.Conv2d(64, 256, 3, 1, 1, bias=False),
-    #         nn.PixelShuffle(2),
-    #         nn.PReLU(),
-    #         nn.Conv2d(64, 256, 3, 1, 1, bias=False),
-    #         nn.PixelShuffle(2),
-    #         nn.PReLU(),
-    #     )
-    #     self.exit_conv = nn.Conv2d(64, 3, kernel_size=9, padding=4, bias=False)
-
-    # def forward(self, x):
-    #     x = self.entry_act(self.entry_conv(x))
-    #     identity = x
-    #     x = self.res_blocks(x)
-    #     x = self.norm(self.inter_conv(x)) + identity
-    #     x = self.upscale(x)
-    #     x = self.exit_conv(x)
-    #     return x
-
-
 # Define the PSNR loss function
 def psnr_loss(y_true, y_pred):
     mse = F.mse_loss(y_pred, y_true)
